@@ -12,14 +12,8 @@ cursor = con.cursor()
 #Start
 word=input("Enter the word: ")
 
-query = cursor.execute("SELECT Definition FROM Dictionary WHERE Expression = '%s'" % word)
+query = cursor.execute("SELECT Definition FROM Dictionary WHERE Expression = '%s' OR Expression = '%s' OR Expression = '%s' " % (word, word.title(), word.upper()))
 results = cursor.fetchall()
-if len(results) == 0:
-    query = cursor.execute("SELECT Definition FROM Dictionary WHERE Expression = '%s'" % word.title())
-    results = cursor.fetchall()
-if len(results) == 0:
-    query = cursor.execute("SELECT Definition FROM Dictionary WHERE Expression = '%s'" % word.upper())
-    results = cursor.fetchall()
 #if len(results) == 0:
 #    query = cursor.execute("SELECT Expression FROM Dictionary")
 #    print(cursor.fetchall())
